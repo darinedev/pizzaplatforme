@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzeria Platform</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+        .endpoint { background: #f5f5f5; padding: 10px; margin: 5px 0; border-radius: 4px; }
+    </style>
 </head>
 <body>
-<h1>hello world</h1>
+<div class="container">
+    <h1>🍕 Pizzeria Platform</h1>
+    <div class="card">
+        <h2>Bienvenue sur votre plateforme de pizzeria !</h2>
+        <p>L'application Spring Boot fonctionne correctement.</p>
+
+        <h3>Endpoints disponibles :</h3>
+        <div class="endpoint"><a href="/api/health">GET /api/health</a> - Status de l'application</div>
+        <div class="endpoint"><a href="/api/public/test">GET /api/public/test</a> - Test endpoint public</div>
+        <div class="endpoint"><a href="/swagger-ui.html">Swagger UI</a> - Documentation API</div>
+
+        <h3>Prochaines étapes :</h3>
+        <ul>
+            <li>Créer les repositories</li>
+            <li>Implémenter les services</li>
+            <li>Développer les controllers REST</li>
+            <li>Ajouter l'authentification</li>
+        </ul>
+    </div>
+</div>
 </body>
 </html>

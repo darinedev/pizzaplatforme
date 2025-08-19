@@ -1,16 +1,48 @@
-
 spring:
   application:
     name: PizzaPlatforme
+
   datasource:
-    url: jdbc:mysql://localhost:3306/pizzaplatforme?createDatabaseIfNotExist=true
-    username: pizzauser
+    url: jdbc:mariadb://localhost:3306/pizza?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
     password: password
+    driver-class-name: org.mariadb.jdbc.Driver
+
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: update  # Changé de create-drop à update pour éviter de perdre les données
     show-sql: true
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        format_sql: true
+        use_sql_comments: true
+    open-in-view: false  # Pour éviter le warning
+
+  main:
+    web-application-type: servlet
 
 server:
   port: 8080
+  address: 0.0.0.0  # Écouter sur toutes les interfaces
+  servlet:
+    context-path: /
+
+# Configuration des logs pour debug
+logging:
+  level:
+    com.pizzeria: DEBUG
+    org.springframework.boot.web.embedded.tomcat: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    logging:
+      level:
+        root: DEBUG
+        org.springframework.web: DEBUG
+        com.darine.pizzaplatforme: TRACE
+
+
+
+  server:
+    port: 8080
+
