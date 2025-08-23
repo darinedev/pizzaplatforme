@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+HEAD
 <h1 align="center">🍕 Application Pizza Full Stack</h1>
 
 ## 📋 Description
