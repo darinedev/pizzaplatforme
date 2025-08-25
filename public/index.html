@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Pizza - Les meilleures pizzas artisanales</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #2c1810, #8b4513);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 0.5rem;
+            color: #ff6b35;
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 107, 53, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="pizza" patternUnits="userSpaceOnUse" width="200" height="200"><circle cx="100" cy="100" r="80" fill="%23d4af37" opacity="0.1"/><circle cx="70" cy="70" r="8" fill="%23ff6b35" opacity="0.3"/><circle cx="130" cy="90" r="6" fill="%23228b22" opacity="0.3"/><circle cx="90" cy="130" r="10" fill="%23dc143c" opacity="0.3"/></pattern></defs><rect width="1200" height="800" fill="%23f5deb3"/><rect width="1200" height="800" fill="url(%23pizza)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            background: linear-gradient(45deg, #ff6b35, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2c1810;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b35, #ffd700);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .search-input {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            width: 300px;
+            max-width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .pizza-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pizza-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pizza-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .pizza-image {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .pizza-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .pizza-card:hover .pizza-image img {
+            transform: scale(1.1);
+        }
+
+        .pizza-content {
+            padding: 1.5rem;
+        }
+
+        .pizza-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c1810;
+            margin-bottom: 0.5rem;
+        }
+
+        .pizza-ingredients {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        /* Size Selection */
+        .size-selection {
+            margin-bottom: 1rem;
+        }
+
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .size-option {
+            flex: 1;
+            padding: 0.5rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .size-option:hover {
+            border-color: #ff6b35;
+        }
+
+        .size-option.selected {
+            border-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+            font-weight: bold;
+        }
+
+        .size-label {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #2c1810;
+        }
+
+        .size-diameter {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .pizza-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Cart */
+        .cart-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(45deg, #ff6b35, #ff8c42);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .cart-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #dc3545;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        .cart-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info h4 {
+            color: #2c1810;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .item-size {
+            font-size: 0.8rem;
+            color: #ff6b35;
+            font-weight: bold;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qty-btn {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-total {
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c1810;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Order Form */
+        .order-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2c1810;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+            box-shadow: 0 0 10px rgba(255, 107, 53, 0.2);
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #2c1810, #8b4513);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto 0;
+        }
+
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            color: #ff6b35;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .pizza-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .size-options {
+                flex-direction: column;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1003;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-pizza-slice"></i>
+                Bella Pizza
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#about">À Propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🍕 Bella Pizza</h1>
+            <p>Découvrez nos délicieuses pizzas artisanales préparées avec des ingrédients frais</p>
+            <a href="#menu" class="cta-button">
+                <i class="fas fa-utensils"></i> Voir le Menu
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Notre Menu</h2>
+            <p class="section-subtitle">Découvrez nos délicieuses pizzas artisanales préparées avec des ingrédients frais</p>
+            
+            <div class="search-container">
+                <input type="text" 
+                       id="searchInput" 
+                       class="search-input" 
+                       placeholder="🔍 Rechercher une pizza...">
+            </div>
+
+            <div id="pizzaGrid" class="pizza-grid">
+                <!-- Les pizzas seront générées par JavaScript -->
+            </div>
+
+            <!-- Order Form -->
+            <div id="orderForm" class="order-form" style="display: none;">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: #2c1810;">
+                    <i class="fas fa-shopping-bag"></i> Finaliser la Commande
+                </h3>
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="nom">Nom complet *</label>
+                        <input type="text" id="nom" name="nom" required>
+                        <div class="error" id="nomError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error" id="emailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Téléphone *</label>
+                        <input type="tel" id="telephone" name="telephone" required>
+                        <div class="error" id="telephoneError"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="adresse">Adresse de livraison *</label>
+                        <textarea id="adresse" name="adresse" rows="3" required></textarea>
+                        <div class="error" id="adresseError"></div>
+                    </div>
+                    <button type="submit" class="checkout-btn">
+                        <i class="fas fa-credit-card"></i> Confirmer la Commande
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" style="padding: 4rem 2rem; background: white; text-align: center;">
+        <div class="container">
+            <h2 class="section-title">🍕 Bella Pizza</h2>
+            <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto;">
+                Les meilleures pizzas artisanales préparées avec des ingrédients frais et de qualité.
+                Une tradition italienne authentique au cœur de Paris.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contact</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Adresse</h3>
+                    <p>123 Rue de la Pizza<br>75001 Paris</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Téléphone</h3>
+                    <p>01 23 45 67 89</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>contact@bellapizza.fr</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Horaires</h3>
+                    <p>Lundi - Jeudi: 11h - 23h<br>
+                       Vendredi - Samedi: 11h - 00h</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Toggle Button -->
+    <button class="cart-toggle" onclick="toggleCart()">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3><i class="fas fa-shopping-cart"></i> Votre Panier</h3>
+                <button class="close-cart" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="cartItems">
+                <p style="text-align: center; color: #666; padding: 2rem;">
+                    Votre panier est vide
+                </p>
+            </div>
+            <div class="cart-total" id="cartTotal">Total: 0,00 €</div>
+            <button class="checkout-btn" onclick="showOrderForm()" id="proceedCheckout" disabled>
+                Procéder à la commande
+            </button>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+        <h3><i class="fas fa-check-circle"></i> Commande confirmée!</h3>
+        <p>Votre commande a été enregistrée avec succès.<br>
+           Vous recevrez un email de confirmation.</p>
+        <button onclick="hideSuccess()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Fermer
+        </button>
+    </div>
+
+    <script>
+        // Data - Images de pizza réelles via API
+        const pizzas = [
+            {
+                id: 1,
+                nom: "Margherita",
+                ingredients: ["tomate", "mozzarella", "basilic"],
+                prix: {
+                    petite: 8,
+                    moyenne: 12,
+                    grande: 16
+                },
+                image: "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=400&h=300&fit=crop&auto=format"
+            },
+            {
+                id: 2,
+                nom: "Pepperoni",
+                ingredients: ["tomate", "mozzarella", "pepperoni"],
+                prix: {
+                    petite: 10,
+                    moyenne: 14,
+                    grande: 18
+                },
+                image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=400&h=300&fit=crop&auto=format"
+            },
+            {
+                id: 3,
+                nom: "Végétarienne",
+                ingredients: ["tomate", "mozzarella", "légumes", "olives"],
+                prix: {
+                    petite: 9,
+                    moyenne: 13,
+                    grande: 17
+                },
+                image: "https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400&h=300&fit=crop&auto=format"
+            },
+            {
+                id: 4,
+                nom: "Quattro Stagioni",
+                ingredients: ["tomate", "mozzarella", "jambon", "champignons", "artichauts", "olives"],
+                prix: {
+                    petite: 12,
+                    moyenne: 16.50,
+                    grande: 20.50
+                },
+                image: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400&h=300&fit=crop&auto=format"
+            },
+            {
+                id: 5,
+                nom: "Calzone",
+                ingredients: ["tomate", "mozzarella", "jambon", "ricotta"],
+                prix: {
+                    petite: 11,
+                    moyenne: 13.50,
+                    grande: 17.50
+                },
+                image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop&auto=format"
+            },
+            {
+                id: 6,
+                nom: "Orientale",
+                ingredients: ["tomate", "mozzarella", "merguez", "poivrons", "oignons"],
+                prix: {
+                    petite: 11.50,
+                    moyenne: 15.50,
+                    grande: 19.50
+                },
+                image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=300&fit=crop&auto=format"
+            }
+        ];
+
+        // Tailles disponibles
+        const sizes = {
+            petite: { label: "Petite", diameter: "20cm" },
+            moyenne: { label: "Moyenne", diameter: "26cm" },
+            grande: { label: "Grande", diameter: "32cm" }
+        };
+
+        // State
+        let cart = [];
+        let filteredPizzas = [...pizzas];
+
+        // Utility Functions
+        const formatPrice = (price) => {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'EUR'
+            }).format(price);
+        };
+
+        const ValidationRules = {
+            required: (value) => {
+                return value && value.trim() !== '' ? null : 'Ce champ est obligatoire';
+            },
+            email: (value) => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!value) return 'Email obligatoire';
+                return emailRegex.test(value) ? null : 'Format email invalide';
+            },
+            phone: (value) => {
+                const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+                if (!value) return 'Téléphone obligatoire';
+                return phoneRegex.test(value.replace(/\s/g, '')) ? null : 'Format téléphone invalide';
+            },
+            minLength: (min) => (value) => {
+                if (!value) return 'Ce champ est obligatoire';
+                return value.length >= min ? null : `Minimum ${min} caractères requis`;
+            }
+        };
+
+        // Render Functions
+        function renderPizzas() {
+            const pizzaGrid = document.getElementById('pizzaGrid');
+            pizzaGrid.innerHTML = '';
+
+            filteredPizzas.forEach(pizza => {
+                const pizzaCard = document.createElement('div');
+                pizzaCard.className = 'pizza-card';
+                pizzaCard.innerHTML = `
+                    <div class="pizza-image">
+                        <img src="${pizza.image}" alt="${pizza.nom}" onerror="this.src='https://via.placeholder.com/400x300/ff6b35/ffffff?text=🍕+${pizza.nom}'">
+                    </div>
+                    <div class="pizza-content">
+                        <h3 class="pizza-name">${pizza.nom}</h3>
+                        <p class="pizza-ingredients">Ingrédients: ${pizza.ingredients.join(', ')}</p>
+                        
+                        <div class="size-selection">
+                            <div class="size-options" id="sizeOptions${pizza.id}">
+                                ${Object.entries(sizes).map(([sizeKey, sizeData]) => `
+                                    <div class="size-option ${sizeKey === 'moyenne' ? 'selected' : ''}" 
+                                         data-size="${sizeKey}" 
+                                         onclick="selectSize(${pizza.id}, '${sizeKey}')">
+                                        <div class="size-label">${sizeData.label}</div>
+                                        <div class="size-diameter">${sizeData.diameter}</div>
+                                        <div style="font-weight: bold; color: #ff6b35; margin-top: 0.25rem;">
+                                            ${formatPrice(pizza.prix[sizeKey])}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                        
+                        <div class="pizza-price" id="price${pizza.id}">
+                            ${formatPrice(pizza.prix.moyenne)}
+                        </div>
+                        
+                        <button class="add-to-cart" onclick="addToCart(${pizza.id})">
+                            <i class="fas fa-plus"></i> Ajouter au panier
+                        </button>
+                    </div>
+                `;
+                pizzaGrid.appendChild(pizzaCard);
+            });
+        }
+
+        function renderCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            const proceedCheckout = document.getElementById('proceedCheckout');
+
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #666; padding: 2rem;">Votre panier est vide</p>';
+                proceedCheckout.disabled = true;
+                cartTotal.textContent = 'Total: 0,00 €';
+                return;
+            }
+
+            proceedCheckout.disabled = false;
+            const total = cart.reduce((sum, item) => sum + (item.prix * item.quantity), 0);
+            cartTotal.textContent = `Total: ${formatPrice(total)}`;
+
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="item-info">
+                        <h4>${item.nom}</h4>
+                        <div class="item-size">${sizes[item.size].label} (${sizes[item.size].diameter})</div>
+                        <p>${formatPrice(item.prix)} × ${item.quantity}</p>
+                    </div>
+                    <div class="item-controls">
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, '${item.size}', -1)">-</button>
+                        <span style="margin: 0 0.5rem; font-weight: bold;">${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateQuantity(${item.id}, '${item.size}', 1)">+</button>
+                        <button class="qty-btn" onclick="removeFromCart(${item.id}, '${item.size}')" style="background: #dc3545; margin-left: 0.5rem;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Size Selection
+        function selectSize(pizzaId, size) {
+            const sizeOptions = document.getElementById(`sizeOptions${pizzaId}`);
+            const priceElement = document.getElementById(`price${pizzaId}`);
+            const pizza = pizzas.find(p => p.id === pizzaId);
+
+            // Update selected size visually
+            sizeOptions.querySelectorAll('.size-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            sizeOptions.querySelector(`[data-size="${size}"]`).classList.add('selected');
+
+            // Update price display
+            priceElement.textContent = formatPrice(pizza.prix[size]);
+        }
+
+        // Cart Functions
+        function addToCart(pizzaId) {
+            const pizza = pizzas.find(p => p.id === pizzaId);
+            const selectedSizeElement = document.querySelector(`#sizeOptions${pizzaId} .size-option.selected`);
+            const selectedSize = selectedSizeElement.dataset.size;
+            
+            const cartItemKey = `${pizzaId}-${selectedSize}`;
+            const existingItem = cart.find(item => item.id === pizzaId && item.size === selectedSize);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...pizza,
+                    size: selectedSize,
+                    prix: pizza.prix[selectedSize],
+                    quantity: 1,
+                    cartKey: cartItemKey
+                });
+            }
+
+            renderCart();
+            
+            // Animation du bouton panier
+            const cartToggle = document.querySelector('.cart-toggle');
+            cartToggle.classList.add('bounce');
+            setTimeout(() => cartToggle.classList.remove('bounce'), 600);
+        }
+
+        function updateQuantity(pizzaId, size, change) {
+            const item = cart.find(item => item.id === pizzaId && item.size === size);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(pizzaId, size);
+                } else {
+                    renderCart();
+                }
+            }
+        }
+
+        function removeFromCart(pizzaId, size) {
+            cart = cart.filter(item => !(item.id === pizzaId && item.size === size));
+            renderCart();
+        }
+
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            cartModal.classList.toggle('active');
+        }
+
+        function showOrderForm() {
+            if (cart.length === 0) return;
+            
+            toggleCart();
+            document.getElementById('orderForm').style.display = 'block';
+            document.getElementById('orderForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Search Function
+        function searchPizzas() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            filteredPizzas = pizzas.filter(pizza =>
+                pizza.nom.toLowerCase().includes(searchTerm) ||
+                pizza.ingredients.some(ingredient => ingredient.toLowerCase().includes(searchTerm))
+            );
+            renderPizzas();
+        }
+
+        // Form Validation
+        function validateField(fieldName, value, rules) {
+            for (const rule of rules) {
+                const error = rule(value);
+                if (error) {
+                    return error;
+                }
+            }
+            return null;
+        }
+
+        function showFieldError(fieldName, error) {
+            const errorElement = document.getElementById(`${fieldName}Error`);
+            const inputElement = document.getElementById(fieldName);
+            
+            if (error) {
+                errorElement.textContent = error;
+                inputElement.style.borderColor = '#dc3545';
+            } else {
+                errorElement.textContent = '';
+                inputElement.style.borderColor = '#28a745';
+            }
+        }
+
+        function validateForm() {
+            const formData = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                telephone: document.getElementById('telephone').value,
+                adresse: document.getElementById('adresse').value
+            };
+
+            const validations = {
+                nom: [ValidationRules.required, ValidationRules.minLength(2)],
+                email: [ValidationRules.email],
+                telephone: [ValidationRules.phone],
+                adresse: [ValidationRules.required, ValidationRules.minLength(10)]
+            };
+
+            let isValid = true;
+
+            for (const [field, rules] of Object.entries(validations)) {
+                const error = validateField(field, formData[field], rules);
+                showFieldError(field, error);
+                if (error) isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            if (!validateForm()) {
+                return;
+            }
+
+            // Simulation de l'envoi de commande
+            const orderData = {
+                items: cart.map(item => ({
+                    nom: item.nom,
+                    taille: sizes[item.size].label,
+                    prix: item.prix,
+                    quantite: item.quantity,
+                    ingredients: item.ingredients
+                })),
+                total: cart.reduce((sum, item) => sum + (item.prix * item.quantity), 0),
+                customer: {
+                    nom: document.getElementById('nom').value,
+                    email: document.getElementById('email').value,
+                    telephone: document.getElementById('telephone').value,
+                    adresse: document.getElementById('adresse').value
+                },
+                date: new Date().toISOString()
+            };
+
+            console.log('Commande envoyée:', orderData);
+
+            // Afficher le message de succès
+            showSuccess();
+
+            // Réinitialiser
+            cart = [];
+            renderCart();
+            document.getElementById('checkoutForm').reset();
+            document.getElementById('orderForm').style.display = 'none';
+        }
+
+        function showSuccess() {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+        }
+
+        function hideSuccess() {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.remove('show');
+        }
+
+        // Smooth scrolling pour les liens de navigation
+        function smoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderPizzas();
+            renderCart();
+            smoothScroll();
+
+            // Search input
+            document.getElementById('searchInput').addEventListener('input', searchPizzas);
+
+            // Form submission
+            document.getElementById('checkoutForm').addEventListener('submit', submitOrder);
+
+            // Real-time validation
+            ['nom', 'email', 'telephone', 'adresse'].forEach(fieldName => {
+                document.getElementById(fieldName).addEventListener('blur', function() {
+                    const validations = {
+                        nom: [ValidationRules.required, ValidationRules.minLength(2)],
+                        email: [ValidationRules.email],
+                        telephone: [ValidationRules.phone],
+                        adresse: [ValidationRules.required, ValidationRules.minLength(10)]
+                    };
+                    
+                    const error = validateField(fieldName, this.value, validations[fieldName]);
+                    showFieldError(fieldName, error);
+                });
+            });
+
+            // Fermer le panier en cliquant à l'extérieur
+            document.getElementById('cartModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    toggleCart();
+                }
+            });
+
+            // Fermer le message de succès automatiquement après 5 secondes
+            setTimeout(() => {
+                const successMessage = document.getElementById('successMessage');
+                if (successMessage.classList.contains('show')) {
+                    hideSuccess();
+                }
+            }, 5000);
+        });
+
+        // Fermer les modales avec la touche Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const cartModal = document.getElementById('cartModal');
+                const successMessage = document.getElementById('successMessage');
+                
+                if (cartModal.classList.contains('active')) {
+                    toggleCart();
+                }
+                if (successMessage.classList.contains('show')) {
+                    hideSuccess();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
