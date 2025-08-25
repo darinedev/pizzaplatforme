@@ -6,7 +6,7 @@ Application web complète permettant aux utilisateurs de consulter un menu de pi
 # Screenshots 📸
 
 ### Page d'accueil
-![Page d'accueil](images/page d'acceuil.png)
+![Page d'accueil](images/page%20d'acceuil.png)
 
 ### Liste des pizzas
 ![Liste des pizzas](images/pizza-list.png)
