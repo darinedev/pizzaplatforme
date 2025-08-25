@@ -2,7 +2,20 @@
 
 ## 📋 Description
 Application web complète permettant aux utilisateurs de consulter un menu de pizzas, personnaliser leur commande et passer commande. Le projet est composé d'un backend REST API en Java Spring Boot et d'un frontend web moderne.
+# Screenshots 📸
 
+### Page d'accueil
+![Page d'accueil](images/page d'acceuil.png)
+
+### Liste des pizzas
+![Liste des pizzas](images/pizza-list.png)
+
+### Panier de commande
+![Panier](images/cart.png)
+### Page de Contact
+![Panier](images/contact.png)
+### Message de Confirmation
+![Panier](images/confirmation.png)
 ## Technologies utilisées
 ### Backend
 - **Java 17+**
